@@ -1,18 +1,22 @@
 const http = require("http");
 
-// process.exitCode=1;
+process.exitCode = 1;
 console.log("let'see....");
 
 const server = http
   .createServer((req, res) => {
     res.statusCode = 200;
-    res.setHeader("Content-Type", "text/plain");
-    res.write("hello world");
+    // res.setHeader("Content-Type", "application/json");
+    res.setHeader("Content-Type", "text/html");
+    
+    // res.write(JSON.stringify({"name":"pranusha"}));
+    res.write(req.url);
     res.end();
   })
   .listen(8090, () => console.log("server started..."));
 // process.exit(); //terminates the node.js
 
-//reading encironmental variables.........................................
-require('dotenv').config();
-console.log(process.env.NODE_ENV);
+//reading environmental variables.........................................
+// require("dotenv").config();
+// console.log(process.env.NODE_ENV);
+
