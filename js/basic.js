@@ -17,6 +17,6 @@ const server = http
 // process.exit(); //terminates the node.js
 
 //reading environmental variables.........................................
-// require("dotenv").config();
-// console.log(process.env.NODE_ENV);
+require("dotenv").config();
+console.log(process.env.NODE_ENV);
 

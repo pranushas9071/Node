@@ -6,7 +6,6 @@ const options = {
   method: "GET",
 };
 
-
 const req = https.request(options, (res) => {
   console.log(`statusCode: ${res.statusCode}`);
 
