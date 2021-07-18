@@ -32,20 +32,20 @@ console.timeEnd();
 
 //Coloring text in console.......................................................
 
-const c = require("chalk");
+import { yellowBright, blueBright, cyanBright, green, greenBright, magentaBright, redBright, rgb, whiteBright } from "chalk";
 console.log(
-  c.yellowBright("Pranusha") +
-    c.blueBright("Pranusha") +
-    c.cyanBright("Pranusha") +
-    c.green("Pranusha") +
-    c.greenBright("Pranusha") +
-    c.magentaBright("Pranusha") +
-    c.redBright("Pranusha") +
-    c.rgb(123, 45, 67).inverse("pranusha") +
-    c.whiteBright("Pranusha")
+  yellowBright("Pranusha") +
+    blueBright("Pranusha") +
+    cyanBright("Pranusha") +
+    green("Pranusha") +
+    greenBright("Pranusha") +
+    magentaBright("Pranusha") +
+    redBright("Pranusha") +
+    rgb(123, 45, 67).inverse("pranusha") +
+    whiteBright("Pranusha")
 );
 
-const ProgressBar = require("progress");
+import ProgressBar from "progress";
 const bar = new ProgressBar(":bar", { total: 10 });//if :bar --> == if :percent -->10% to 100% if :current --> 1 to 10
 const timer = setInterval(() => {
   bar.tick();

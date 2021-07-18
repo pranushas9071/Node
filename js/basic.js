@@ -1,10 +1,9 @@
-const http = require("http");
+import { createServer } from "http";
 
 process.exitCode = 1;
 console.log("let'see....");
 
-const server = http
-  .createServer((req, res) => {
+const server = createServer((req, res) => {
     res.statusCode = 200;
     // res.setHeader("Content-Type", "application/json");
     res.setHeader("Content-Type", "text/html");

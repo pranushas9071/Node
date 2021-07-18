@@ -1,4 +1,5 @@
-const https = require("https");
+// const https = require("https");
+import * as https from "https"
 const options = {
   port: 443,
   hostname: "dog.ceo",

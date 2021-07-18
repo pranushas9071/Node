@@ -1,13 +1,13 @@
-const fs = require("fs");
-fs.readFile("./js/events.js", "utf8", (err, data) => {
+import { readFile, writeFile, appendFile, stat, mkdir, readdirSync } from "fs";
+readFile("./js/events.js", "utf8", (err, data) => {
   console.log(data);
 });
 
-fs.writeFile("./js/newfile.js", 'console.log("hello world");', (err) => {
+writeFile("./js/newfile.js", 'console.log("hello world");', (err) => {
   console.log("File saved");
 });
 
-fs.appendFile("./js/newfile.js", 'console.log("welcome....");', (err) => {
+appendFile("./js/newfile.js", 'console.log("welcome....");', (err) => {
   console.log("File appended");
 });
 
@@ -17,7 +17,7 @@ fs.appendFile("./js/newfile.js", 'console.log("welcome....");', (err) => {
 // })
 
 //file stat.............................................................
-fs.stat("./js/basic.js", (err, stats) => {
+stat("./js/basic.js", (err, stats) => {
   console.log(stats.isFile());
   console.log(stats.isDirectory());
   console.log(stats.isSocket());
@@ -27,13 +27,13 @@ fs.stat("./js/basic.js", (err, stats) => {
 
 //folders.....................................................................
 
-fs.mkdir("stuff", () => {
+mkdir("stuff", () => {
   console.log("created folder...");
 });
 
 const fdname = "./js";
 
-console.log(fs.readdirSync(fdname));
+console.log(readdirSync(fdname));
 
 // fs.readdir(fdname,(er,files)=>{
 //     console.log(files);

@@ -1,5 +1,6 @@
 //path.....................................................................
-const path = require("path");
+import * as path from "path"
+// const path = require("path");
 const note = "./js/basic.js";
 console.log("base name : " + path.basename(note));
 console.log("dirname : " + path.dirname(note));

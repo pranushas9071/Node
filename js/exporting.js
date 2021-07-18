@@ -6,12 +6,13 @@
 //     }
 // }
 
-class Cars{
-    brand="Scoda";
-    model="Superb";
-    display(){
-        console.log("Display function.....");
-    }
+class Cars {
+  brand = "Scoda";
+  model = "Superb";
+  display() {
+    console.log("Display function.....");
+  }
 }
 
-module.exports=Cars;
+// module.exports=Cars;
+export { Cars };

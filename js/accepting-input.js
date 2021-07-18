@@ -1,4 +1,6 @@
-const rl = require("readline").createInterface({
+import * as read from "readline"
+
+const rl = read.createInterface({
   input: process.stdin,
   output: process.stdout,
 });

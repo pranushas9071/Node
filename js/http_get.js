@@ -1,4 +1,4 @@
-const https = require("https");
+import { request } from "https";
 const options = {
   hostname: "dog.ceo",
   port: 443,
@@ -6,7 +6,7 @@ const options = {
   method: "GET",
 };
 
-const req = https.request(options, (res) => {
+const req = request(options, (res) => {
   console.log(`statusCode: ${res.statusCode}`);
 
   res.on("data", (d) => {
