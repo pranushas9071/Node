@@ -17,5 +17,5 @@ const server = createServer((req, res) => {
 
 //reading environmental variables.........................................
 require("dotenv").config();
-console.log(process.env.NODE_ENV);
+console.log(process.env.ENV);
 

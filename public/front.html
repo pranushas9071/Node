@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      #loader {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DOGS</h1>
+    <button id="list-all" onclick="dispAll()">
+      Display all breeds and species</button
+    ><br />
+    <form id="Species" onsubmit="getSpecies()">
+      <label>Enter a breed : </label><br />
+      <input name="Breed" id="breed" placeholder="Please enter a breed" /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <form id="addBreed" onsubmit="addNewBreed()">
+      <label>Enter the new breed to be added :</label><br />
+      <input
+        name="Breed"
+        id="newBreed"
+        placeholder="Please enter the breed"
+      /><br />
+      <label>Enter the species :</label><br />
+      <input
+        name="species"
+        id="newSpecies"
+        placeholder="Please enter the species"
+      /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <div id="loader">
+      <div class="d-flex align-items-center">
+        <strong>Loading...</strong>
+        <div
+          class="spinner-border ml-auto"
+          role="status"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </div>
+    <table id="disp"></table>
+    <ul id="dispSpecies"></ul>
+    <script src="../js/Script-dog.js"></script>
+  </body>
+</html>
