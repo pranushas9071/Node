@@ -43,31 +43,57 @@ function display(data) {
     tbl.style.borderCollapse = "collapse";
   }
 }
-function dispSpecies(ev) {
-  ev.preventDefault();
+function dispSpecies(e) {
+  e.preventDefault();
   const sp = document.getElementById("Species");
-  for (var j = 0; j < sp.elements.length; j++) {
-    if (sp.elements[j].tagName == "INPUT") {
-      // li.innerHTML = sp.elements[j].name + " : " + sp.elements[j].value;
-      console.log("inside if");
-      let url = `http://localhost:8090/dog/selectBreed?${sp.elements[j].name}=${sp.elements[j].value}`;
-      let request = new XMLHttpRequest();
-      request.open("GET", url);
-      request.responseType = "json";
-      request.send();
-      request.onload = function () {
-        const data = request.response;
-        showSpecies(data);
-      };
-    }
-  }
+  let url = `http://localhost:8090/dog/selectBreed?${sp.elements[0].name}=${sp.elements[0].value}`;
+  let request = new XMLHttpRequest();
+  request.open("GET", url);
+  request.responseType = "json";
+  request.send();
+  request.onload = function () {
+    const data = request.response;
+    showSpecies(data);
+  };
 }
+
 function showSpecies(data) {
-  console.log("data",data);
+  console.log("data", data);
   const ul = document.getElementById("dispSpecies");
   data.forEach((val) => {
     const li = document.createElement("li");
     li.innerText = val;
     ul.append(li);
   });
+}
+
+function addBreed(ev) {
+  ev.preventDefault();
+  const input = document.getElementById("addingBreed");
+  let url = `http://localhost:8090/dog/newBreed?${input.elements[0].name}=${input.elements[0].value}&${input.elements[1].name}=${input.elements[1].value}`;
+  let request = new XMLHttpRequest();
+  request.open("POST", url);
+  request.send();
+  request.onload = function () {
+    const data = request.response;
+    showMessage(data);
+  };
+}
+function showMessage(data) {
+  console.log("data", data);
+  const msg = document.getElementById("update");
+  msg.innerText = data;
+  document.body.append(msg);
+}
+function addSpecies(ev) {
+  ev.preventDefault();
+  const input = document.getElementById("addSpecies");
+  let url = `http://localhost:8090/dog/newSpecies?${input.elements[0].name}=${input.elements[0].value}&${input.elements[1].name}=${input.elements[1].value}`;
+  let request = new XMLHttpRequest();
+  request.open("PUT", url);
+  request.send();
+  request.onload = function () {
+    const data = request.response;
+    showMessage(data);
+  };
 }

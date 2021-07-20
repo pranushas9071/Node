@@ -17,13 +17,16 @@ app.get("/dog/selectBreed", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
   const key = req.query.Breed;
   console.log(key);
-  console.log("url : "+req.url);
-  console.log("query : ",req.query);
+  console.log("url : " + req.url);
+  console.log("query : ", req.query);
   const mainKeys = Object.keys(file);
   for (let x in mainKeys) {
     let breed = Object.keys(file[mainKeys[x]]);
     if (breed.includes(key)) {
       const val = file[mainKeys[x]][key];
+      // res.download(
+      //   "C:Userspranusha.sivasamyPicturesScreenshotsScreenshot(11).png"
+      // );
       res.send(val);
       break;
     }
@@ -45,23 +48,15 @@ app.post("/dog", (req, res) => {
 //to add data inside message key using post method
 app.post("/dog/newBreed/", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
-  const key = req.body.breed;
-  const val = req.body.species;
-  // const key = Object.keys(req.body);
-  // const val = Object.values(req.body);
-  // for (let i in key) {
-  // let t = [];
-  // let v = val[i];
-  // t.push(v);
-  // t = t.flatMap((n) => n);
-  // file.message[key[i]] = t;
-  // }
+  const key = req.query.breed;
+  const val = req.query.species;
+  console.log(key, val);
   let t = [];
   let v = val;
   t.push(v);
   file.message[key] = t;
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
-  res.header("Content-Type", "Application/json");
+  res.header("Content-Type", "text/plain");
   res.send("Added successfully");
 });
 
@@ -75,21 +70,14 @@ app.put("/dog", (req, res) => {
 });
 
 //adding data inside the existing species
-app.post("/dog/newSpecies", (req, res) => {
+app.put("/dog/newSpecies", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
-  const key = req.body.breed;
-  const val = req.body.species;
-  // const key = Object.keys(req.body);
-  // const val = Object.values(req.body);
-  // for (let i in key) {
-  //   let t = file.message[key[i]];
-  //   t.push(val[i]);
-  //   t = t.flatMap((n) => n);
-  // }
-  let t=[];
+  const key = req.query.breed;
+  const val = req.query.species;
+  let t = [];
   t.push(file.message[key]);
   t.push(val);
-  file.message[key]=t;
+  file.message[key] = t;
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
   res.send("Successfully updated '-' ");
 });
