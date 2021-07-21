@@ -79,12 +79,13 @@ function addBreed(ev) {
     showMessage(data);
   };
 }
+
 function showMessage(data) {
   console.log("data", data);
   const msg = document.getElementById("update");
   msg.innerText = data;
-  document.body.append(msg);
 }
+
 function addSpecies(ev) {
   ev.preventDefault();
   const input = document.getElementById("addSpecies");

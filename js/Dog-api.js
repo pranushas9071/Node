@@ -42,6 +42,11 @@ app.post("/dog", (req, res) => {
   }
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
   res.header("Content-Type", "Application/json");
+  res.cookie("name", "Pranusha", {
+    // expires: new Date(Date.now() + 900000),
+    maxAge:900000,
+    httpOnly: true,
+  });
   res.send(file);
 });
 
