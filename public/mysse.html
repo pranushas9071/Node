@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="start()">Start</button><br /><br />
+    <button onclick="stop()">Stop</button>
+    <h2 id="state"></h2>
+    <h2 id="state2"></h2>
+    <ul id="disp"></ul>
+    <script>
+      const ul = document.getElementById("disp");
+      const state = document.getElementById("state");
+      const state2 = document.getElementById("state");
+      let myeve;
+      function start() {
+        myeve = new EventSource("http://localhost:8090/connect");
+        // console.log("readystate", myeve.readyState);
+        myeve.onopen = (ev) => {
+          console.log("readystate in open : ", myeve.readyState);
+          //   console.log("Opened");
+          state.innerText = "Connected..";
+        };
+        myeve.onmessage = (ev) => {
+          console.log("readystate in msg : ", myeve.readyState);
+          //   console.log("received msg");
+          state2.innerText = "Connected..";
+          const li = document.createElement("li");
+          li.innerText = ev.data;
+          ul.append(li);
+        };
+        myeve.onerror = (ev) => {
+          if (myeve.readyState === 2) {
+            state.innerText = "Closed..";
+          } else if (myeve.readyState === 0) {
+            console.log("readystate in connecting : ", myeve.readyState);
+            // console.log("connecting..");
+            state.innerText = "Connecting..";
+          }
+        };
+      }
+
+      const stop = () => {
+        console.log("Closed..");
+        state.innerText = "Disconnected..";
+        myeve.close();
+        console.log("Readystate", myeve.readyState);
+      };
+    </script>
+  </body>
+</html>
