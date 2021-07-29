@@ -6,35 +6,6 @@ const app = express();
 app.use(json()); // middleware
 app.use(cors());
 
-app.get("/files/:id", (req, res) => {
-  console.log(req.baseUrl);
-  console.log("fresh : ", req.fresh);
-  console.log("host : ", req.host);
-  console.log("hostname : ", req.hostname);
-  console.log("ip : ", req.ip);
-  console.log("ips : ", req.ips);
-  console.log("method : ", req.method);
-  console.log("originalurl : ", req.originalUrl);
-  console.log("path : ", req.path);
-  console.log("route : ", req.route);
-  console.log("secure : ", req.secure);
-  console.log("Stale : ", req.stale);
-  console.log("xhr : ", req.xhr);
-  // console.log(req.accepted);
-  console.log(req.get("Content-Type"));
-  console.log(req.is("text/html"));
-  console.log(res.headersSent);
-  console.log(res.locals);
-  res.cookie("foo", "bar");
-  res.setHeader("Content-Type","text/html")
-  console.log(res.get("Content-Type"));
-  res.links({
-    next: 'http://api.example.com/users?page=2',
-    last: 'http://api.example.com/users?page=5'
-  })
-  res.send("Hello world");
-});
-
 app.get("/dog", (req, res) => {
   const data = JSON.parse(fs.readFileSync("./js/data.json"));
   res.header("Content-Type", "Application/json");
@@ -132,6 +103,8 @@ app.delete("/dog/:key", (req, res) => {
   res.send("Deleted successfully");
 });
 
+//................................................................................................
+
 app.get("/countdown", (req, res) => {
   res.writeHead(200, {
     "Content-Type": "text/event-stream",
@@ -164,3 +137,33 @@ function sendData(res) {
 }
 
 app.listen(8090);
+
+
+app.get("/files/:id", (req, res) => {
+  console.log(req.baseUrl);
+  console.log("fresh : ", req.fresh);
+  console.log("host : ", req.host);
+  console.log("hostname : ", req.hostname);
+  console.log("ip : ", req.ip);
+  console.log("ips : ", req.ips);
+  console.log("method : ", req.method);
+  console.log("originalurl : ", req.originalUrl);
+  console.log("path : ", req.path);
+  console.log("route : ", req.route);
+  console.log("secure : ", req.secure);
+  console.log("Stale : ", req.stale);
+  console.log("xhr : ", req.xhr);
+  // console.log(req.accepted);
+  console.log(req.get("Content-Type"));
+  console.log(req.is("text/html"));
+  console.log(res.headersSent);
+  console.log(res.locals);
+  res.cookie("foo", "bar");
+  res.setHeader("Content-Type","text/html")
+  console.log(res.get("Content-Type"));
+  res.links({
+    next: 'http://api.example.com/users?page=2',
+    last: 'http://api.example.com/users?page=5'
+  })
+  res.send("Hello world");
+});
