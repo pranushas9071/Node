@@ -9,6 +9,7 @@ function dispAll() {
     display(data);
   };
 }
+
 function display(data) {
   const a = Object.keys(data.message);
   const b = Object.values(data.message);
