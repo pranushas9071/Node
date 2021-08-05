@@ -1,3 +1,5 @@
+import { blueBright, cyanBright, green, greenBright, magentaBright, redBright, rgb, whiteBright, yellowBright } from "chalk";
+import ProgressBar from "progress";
 //output to command line
 
 //console.count()...............................................................
@@ -32,7 +34,6 @@ console.timeEnd();
 
 //Coloring text in console.......................................................
 
-import { yellowBright, blueBright, cyanBright, green, greenBright, magentaBright, redBright, rgb, whiteBright } from "chalk";
 console.log(
   yellowBright("Pranusha") +
     blueBright("Pranusha") +
@@ -45,7 +46,6 @@ console.log(
     whiteBright("Pranusha")
 );
 
-import ProgressBar from "progress";
 const bar = new ProgressBar(":bar", { total: 10 });//if :bar --> == if :percent -->10% to 100% if :current --> 1 to 10
 const timer = setInterval(() => {
   bar.tick();
