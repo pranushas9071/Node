@@ -37,15 +37,16 @@
     <button id="list-all" onclick="dispAll()">
       Display all breeds and species</button
     ><br />
-    <form id="Species" onsubmit="getSpecies()">
+    <form id="Species" onsubmit="dispSpecies(event)">
       <label>Enter a breed : </label><br />
       <input name="Breed" id="breed" placeholder="Please enter a breed" /><br />
       <button type="submit">Submit</button>
     </form>
-    <form id="addBreed" onsubmit="addNewBreed()">
+
+    <form id="addingBreed" onsubmit="addBreed(event)">
       <label>Enter the new breed to be added :</label><br />
       <input
-        name="Breed"
+        name="breed"
         id="newBreed"
         placeholder="Please enter the breed"
       /><br />
@@ -57,18 +58,27 @@
       /><br />
       <button type="submit">Submit</button>
     </form>
-    <div id="loader">
-      <div class="d-flex align-items-center">
-        <strong>Loading...</strong>
-        <div
-          class="spinner-border ml-auto"
-          role="status"
-          aria-hidden="true"
-        ></div>
-      </div>
-    </div>
+    
+    <form
+      id="addSpecies" onsubmit="addSpecies(event)"
+    >
+      <label>Enter the breed :</label><br />
+      <input
+        name="breed"
+        id="Breed"
+        placeholder="Please enter the breed"
+      /><br />
+      <label>Enter the species to be added :</label><br />
+      <input
+        name="species"
+        id="updateSpecies"
+        placeholder="Please enter the species"
+      /><br />
+      <button type="submit">Submit</button>
+    </form>
     <table id="disp"></table>
     <ul id="dispSpecies"></ul>
+    <p id="update"></p>
     <script src="../js/Script-dog.js"></script>
   </body>
 </html>

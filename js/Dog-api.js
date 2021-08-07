@@ -1,6 +1,10 @@
 import express, { json } from "express";
 import * as fs from "fs";
 import cors from "cors";
+const app = express();
+app.use(json()); // middleware
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
 
 const app = express();
 app.use(json()); // middleware
@@ -13,17 +17,20 @@ app.get("/dog", (req, res) => {
 });
 
 // getting specific species of particular breed
-app.get("/dog/:breed", (req, res) => {
+app.get("/dog/selectBreed", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
-  const key = req.params.breed;
+  const key = req.query.Breed;
   console.log(key);
-  console.log(req.url);
-  // res.header("Content-Type", "Application/json");
+  console.log("url : " + req.url);
+  console.log("query : ", req.query);
   const mainKeys = Object.keys(file);
   for (let x in mainKeys) {
     let breed = Object.keys(file[mainKeys[x]]);
     if (breed.includes(key)) {
       const val = file[mainKeys[x]][key];
+      // res.download(
+      //   "C:Userspranusha.sivasamyPicturesScreenshotsScreenshot(11).png"
+      // );
       res.send(val);
       break;
     }
@@ -39,26 +46,27 @@ app.post("/dog", (req, res) => {
   }
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
   res.header("Content-Type", "Application/json");
+  res.cookie("name", "Pranusha", {
+    // expires: new Date(Date.now() + 900000),
+    maxAge:900000,
+    httpOnly: true,
+  });
   res.send(file);
 });
 
 //to add data inside message key using post method
 app.post("/dog/newBreed/", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
-  console.log(req.url);
-  // console.log(req.body);
-  const key = Object.keys(req.body);
-  const val = Object.values(req.body);
-  for (let i in key) {
-    let t = [];
-    let v = val[i];
-    t.push(v);
-    t = t.flatMap((n) => n);
-    file.message[key[i]] = t;
-  }
+  const key = req.query.breed;
+  const val = req.query.species;
+  console.log(key, val);
+  let t = [];
+  let v = val;
+  t.push(v);
+  file.message[key] = t;
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
-  res.header("Content-Type", "Application/json");
-  res.send(file);
+  res.header("Content-Type", "text/plain");
+  res.send("Added successfully");
 });
 
 app.put("/dog", (req, res) => {
@@ -73,13 +81,12 @@ app.put("/dog", (req, res) => {
 //adding data inside the existing species
 app.put("/dog/newSpecies", (req, res) => {
   const file = JSON.parse(fs.readFileSync("./js/data.json"));
-  const key = Object.keys(req.body);
-  const val = Object.values(req.body);
-  for (let i in key) {
-    let t = file.message[key[i]];
-    t.push(val[i]);
-    t = t.flatMap((n) => n);
-  }
+  const key = req.query.breed;
+  const val = req.query.species;
+  let t = [];
+  t.push(file.message[key]);
+  t.push(val);
+  file.message[key] = t;
   fs.writeFileSync("./js/data.json", JSON.stringify(file));
   res.send("Successfully updated '-' ");
 });
