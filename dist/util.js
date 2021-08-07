@@ -69,6 +69,7 @@ dbug("Good morning1!!");
 dbug("Good morning2!!");
 dbug2("welcome1..");
 dbug2("welcome2..");
+util_1.default.debuglog("foo");
 console.log("Env : ", process.env.NODE_DEBUG);
 //debuglog().enabled..................................................
 // const d=util.debuglog("foo").enabled;//??

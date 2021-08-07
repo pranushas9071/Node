@@ -1,4 +1,4 @@
-import { readFile, writeFile, appendFile, stat, mkdir, readdirSync } from "fs";
+import fs,{ readFile, writeFile, appendFile, stat, mkdir, readdirSync } from "fs";
 readFile("./js/events.js", "utf8", (err, data) => {
   console.log(data);
 });
@@ -27,15 +27,18 @@ stat("./js/basic.js", (err, stats) => {
 
 //folders.....................................................................
 
-mkdir("stuff", () => {
+mkdir("details", () => {
   console.log("created folder...");
 });
 
+fs.rmdir("C:/Users/pranusha.sivasamy/Documents/GitHub/Node/details",()=>{
+  console.log("Folder removed..");
+})
 const fdname = "./js";
 
 console.log(readdirSync(fdname));
 
-// fs.readdir(fdname,(er,files)=>{
-//     console.log(files);
-//     console.log("read successfully....");
-// })
+fs.readdir(fdname,(er,files)=>{
+    console.log(files);
+    console.log("read successfully....");
+})
