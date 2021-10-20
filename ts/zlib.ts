@@ -12,6 +12,15 @@ console.log("Compressed successfully");
 const unZip = zlib.createUnzip();
 const input1 = fs.createReadStream("Node/" + "../stuff/data.txt.gz");
 const output1 = fs.createWriteStream("Node/" + "../stuff/decompressed.txt");
+
+const input3 = fs.readFileSync("Node/" + "../stuff/testing.gz");
+zlib.gunzip(input3, (err, res) => {
+  if (err) console.log(err);
+  else {
+    console.log(`Try deflate : ${res}`);
+    fs.writeFileSync("Node/" + "../stuff/testing.txt", res,{encoding:"utf-8"});
+  }
+});
 // input1
 //   .pipe(unZip)
 //   .on("error", (err) => {
