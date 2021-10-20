@@ -14,6 +14,7 @@ const listener4 = () => {
 ee.on("event1", () => {
   console.log("Listener1....");
 });
+
 ee.addListener("event2", listener2);
 ee.addListener("event1", listener3);
 

@@ -19,6 +19,9 @@ if (clust.isMaster) {
   // process.on("error", () => {  
   //   console.log("Error");
   // });
+  console.log("worker connected? - ",clust.worker.isConnected());
+  console.log("worker dead? - ",clust.worker.isDead());
+
   app.get("/", (req, res) => {
     const data = `Worker : ${process.pid}`;
     res.send(data);
